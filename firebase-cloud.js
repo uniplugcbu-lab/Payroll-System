@@ -25,10 +25,9 @@
         this.lastError = "The Firebase SDK did not load (check your internet connection, or whether gstatic.com is blocked).";
         return false;
       }
-      // firebase-config.js declares a top-level `const firebaseConfig` (global lexical scope, not a window property).
-      var c = (typeof firebaseConfig !== "undefined" && firebaseConfig) ? firebaseConfig : window.HR_PAYROLL_FIREBASE_CONFIG;
+      var c = window.HR_PAYROLL_FIREBASE_CONFIG;
       if (!c) {
-        this.lastError = "firebase-config.js did not load or does not define firebaseConfig.";
+        this.lastError = "firebase-config.js did not load or does not define HR_PAYROLL_FIREBASE_CONFIG.";
         return false;
       }
       if (!c.apiKey || !c.projectId || !c.appId) {

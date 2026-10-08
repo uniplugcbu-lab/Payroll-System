@@ -252,9 +252,11 @@
         state.settings = Object.assign(state.settings, data.settings || {});
         if (data.organization && data.organization.name) state.settings.companyName = data.organization.name;
         if (data.organization && data.organization.pacraRegistrationNumber) state.settings.pacraRegistrationNumber = data.organization.pacraRegistrationNumber;
+        document.documentElement.dataset.firebaseWorkspace = "loaded";
       } catch (e) {
-        console.error(e);
-        toast("Could not load Firestore workspace.", true);
+        console.error("Firebase workspace load failed; using the local workspace:", e);
+        loadLocal();
+        document.documentElement.dataset.firebaseWorkspace = "unavailable";
       }
     }
     showApp();
